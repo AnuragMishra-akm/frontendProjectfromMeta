@@ -1,24 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';  
+import { BrowserRouter as Router} from 'react-router-dom';
+import Footer from '../../my-application/src/Footer';
+import Header from '../../my-application/src/Header';
+import Main from '../../my-application/src/Main';
+import icon from './logo.svg';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <>
+      <meta name='description' content='This is a food ordering and reserving a table app for Little Lemon restaurant' /> {/* Corrected here */}
+      <meta name='og:title' content='Little Lemon' />
+      <meta name='og:description' content='This is a food ordering and reserving a table app for Little Lemon restaurant' /> {/* Corrected here */}
+      <meta name='og:image' content={icon} />
+
+      <Header />
+     <Main />
+      <Footer />
+    </>
+   </Router>
   );
 }
 
