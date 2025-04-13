@@ -11,6 +11,9 @@ function NavComponent() {
                     <Link to="/bookingPage">BookingPage</Link>
                 </li>
                 <li>
+                    <Link to="/confirmed">BookingConfirm</Link> {/* Corrected here */}
+                </li>
+                <li>
                     <Link to="/chicago">Chicago</Link>
                 </li>
                 <li>

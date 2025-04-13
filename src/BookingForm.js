@@ -1,11 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 
-function BookingForm({availableTimes , updateTimes}) {
+function BookingForm({updateTimes,submitForm}) {
     const [name, setName] = useState('');
-    const [date, setDate] = useState('2023-10-01'); // Default date set to today
+    const [date, setDate] = useState(new Date().toISOString().split('T')[0]); // Default date set to today
     const [time, setTime] = useState('');
     const [guests, setGuests] = useState(1);
     const [occasion, setOccasion] = useState('Birthday');
+    const [availableTimes, setAvailableTimes] = useState([]);
+
+// Fetch available times for todays date when the component mounts
+    useEffect(() => {
+        const fetchAvailableTimes = async () => {
+            const responseAsTime = await window.fetchAPI(new Date (date));
+            setAvailableTimes(responseAsTime);
+        };
+        fetchAvailableTimes();
+    }, [date]); // Re-fetch available times when the date changes
 
 
     const handleDateChange = (event) => {
@@ -14,7 +24,7 @@ function BookingForm({availableTimes , updateTimes}) {
         updateTimes(selectedDate); // Call the updateTimes function with the selected date
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const bookingDetails = {
             name,
@@ -23,8 +33,19 @@ function BookingForm({availableTimes , updateTimes}) {
             guests,
             occasion,
         };
-        console.log('Booking Details:', bookingDetails);
-        // Here you can send the bookingDetails to your server or perform any other action
+        // Handle the booking details (e.g., send to server or display confirmation)
+        // const success = await window.submitAPI(bookingDetails); //Submit the booking details
+        // if (success) {
+        //     alert('Booking successful!');
+        //     console.log('Booking SuccesFul:', bookingDetails);
+        // } else {
+        //     alert('Booking failed. Please try again.');
+        //     console.log('Booking Failed:');
+        // }
+        // console.log('Booking Details:', bookingDetails);
+        // // Here you can send the bookingDetails to your server or perform any other action
+
+await submitForm(bookingDetails); // Call the submitForm function with the booking details
     };
     return (
         <form onSubmit={handleSubmit} style={{ display: 'grid', maxWidth: '400px', margin: '0 auto',gap:'20px' }}>
