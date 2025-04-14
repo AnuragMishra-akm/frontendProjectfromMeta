@@ -42,9 +42,9 @@ function BookingForm({updateTimes,submitForm}) {
         //     alert('Booking failed. Please try again.');
         //     console.log('Booking Failed:');
         // }
-        // console.log('Booking Details:', bookingDetails);
+        console.log('Booking Details:', bookingDetails);
         // // Here you can send the bookingDetails to your server or perform any other action
-
+        localStorage.setItem('bookingDetails', JSON.stringify(bookingDetails));
 await submitForm(bookingDetails); // Call the submitForm function with the booking details
     };
     return (
