@@ -50,7 +50,7 @@ await submitForm(bookingDetails); // Call the submitForm function with the booki
     return (
         <form onSubmit={handleSubmit} style={{ display: 'grid', maxWidth: '400px', margin: '0 auto',gap:'20px' }}>
             <label htmlFor="name">Name:</label>
-            <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} required />
+            <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} required minLength="3" />
             <label htmlFor="res-date">Date:</label>
             <input type="date" id="res-date" value={date} onChange={(e) => {handleDateChange(e)}} required />
             <label htmlFor="res-time">Time:</label>
